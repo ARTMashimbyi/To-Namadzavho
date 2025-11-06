@@ -36,7 +36,7 @@
 
         --envelope-x: 300px;
         --envelope-y: 200px;
-        --envelope-bg: rgb(3, 100, 103);
+        --envelope-bg: #2d5aa0;
         --envelope-shadow: rgb(255, 128, 0);
         --letter-x: 250px;
         --letter-y: calc(250px - 1rem - 10px);
@@ -745,6 +745,226 @@
         pointer-events: none;
       }
 
+      /* NEW FEATURES STYLES */
+
+      /* Romantic Background Animation */
+      .romantic-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 80%,
+            rgba(10, 116, 218, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(0, 212, 170, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 40% 40%,
+            rgba(255, 77, 109, 0.05) 0%,
+            transparent 50%
+          );
+        animation: float 6s ease-in-out infinite;
+        z-index: 0;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      /* Hidden Surprise Messages */
+      .surprise-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        border: none;
+        border-radius: 50%;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .surprise-button:hover {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+
+      .surprise-message {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: linear-gradient(135deg, var(--card), var(--card-light));
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        border: 2px solid var(--primary);
+        max-width: 400px;
+        width: 90%;
+        text-align: center;
+        z-index: 1001;
+        transition: transform 0.5s ease;
+      }
+
+      .surprise-message.active {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .surprise-message h3 {
+        color: var(--primary);
+        margin-bottom: 15px;
+        font-family: var(--letter-font);
+      }
+
+      .surprise-message p {
+        color: var(--text);
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .close-surprise {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .close-surprise:hover {
+        background: var(--primary-light);
+      }
+
+      /* Name in Lights Animation */
+      .name-lights {
+        text-align: center;
+        margin: 30px 0;
+        display: none;
+      }
+
+      .glowing-name {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        font-family: var(--letter-font);
+        background: linear-gradient(
+          45deg,
+          #ff6b6b,
+          #ffd93d,
+          #6bcf7f,
+          #4d96ff,
+          #9d4edd
+        );
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: glow 3s ease-in-out infinite, gradientShift 4s ease infinite;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      }
+
+      @keyframes glow {
+        0%,
+        100% {
+          text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        50% {
+          text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
+            0 0 40px rgba(255, 255, 255, 0.6);
+        }
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Interactive Rose/Gift */
+      .rose-container {
+        text-align: center;
+        margin: 30px 0;
+        display: none;
+      }
+
+      .rose-animation {
+        font-size: 4rem;
+        margin-top: 20px;
+        animation: roseFloat 3s ease-in-out infinite;
+      }
+
+      @keyframes roseFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(10deg);
+        }
+      }
+
+      /* Countdown Timer */
+      .countdown-container {
+        text-align: center;
+        margin: 40px 0;
+        display: none;
+      }
+
+      .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .countdown-item {
+        background: linear-gradient(135deg, var(--card), var(--card-light));
+        padding: 20px;
+        border-radius: 15px;
+        min-width: 100px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--primary);
+      }
+
+      .countdown-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: block;
+      }
+
+      .countdown-label {
+        color: var(--text-light);
+        font-size: 1rem;
+        margin-top: 5px;
+        display: block;
+      }
+
       /* Mobile-specific improvements */
       @media (max-width: 768px) {
         .content-wrapper {
@@ -796,6 +1016,24 @@
         .heart-text {
           font-size: 1.2rem;
         }
+
+        .countdown {
+          gap: 10px;
+        }
+
+        .countdown-item {
+          min-width: 80px;
+          padding: 15px;
+        }
+
+        .countdown-number {
+          font-size: 2rem;
+        }
+
+        .surprise-button {
+          bottom: 10px;
+          right: 10px;
+        }
       }
 
       @media (max-width: 480px) {
@@ -831,6 +1069,15 @@
         .heart-text {
           font-size: 1rem;
         }
+
+        .countdown-item {
+          min-width: 70px;
+          padding: 10px;
+        }
+
+        .countdown-number {
+          font-size: 1.8rem;
+        }
       }
 
       /* Touch improvements for mobile */
@@ -846,6 +1093,11 @@
         #accept-btn:hover {
           transform: none;
         }
+
+        .surprise-button:hover {
+          transform: none;
+          opacity: 0.7;
+        }
       }
     </style>
   </head>
@@ -853,9 +1105,36 @@
     <div class="container">
       <canvas id="loveCanvas"></canvas>
 
+      <!-- Romantic Background Animation -->
+      <div class="romantic-bg"></div>
+
       <div class="particles-container" id="particles"></div>
 
       <div class="floating-hearts" id="floatingHearts"></div>
+
+      <!-- Hidden music element (no visible controls) -->
+      <audio id="romanticMusic" loop>
+        <!-- You can add your own romantic music file here -->
+        <!-- <source src="romantic-music.mp3" type="audio/mpeg"> -->
+      </audio>
+
+      <!-- Hidden Surprise Button -->
+      <button class="surprise-button" id="surpriseButton">💝</button>
+
+      <!-- Surprise Message -->
+      <div class="surprise-message" id="surpriseMessage">
+        <h3>My Dearest Namadzavho</h3>
+        <p>
+          Every moment with you feels like a beautiful dream. Your smile lights
+          up my world, and your laughter is my favorite melody. I feel
+          incredibly lucky to have you in my life.
+        </p>
+        <p>
+           Can't wait to
+          create more beautiful memories with you! ❤️
+        </p>
+        <button class="close-surprise" id="closeSurprise">Close</button>
+      </div>
 
       <div class="content-wrapper">
         <div class="header">
@@ -930,6 +1209,11 @@
           </button>
         </div>
 
+        <!-- Interactive Rose (no button, just animation) -->
+        <div class="rose-container" id="roseContainer">
+          <div class="rose-animation" id="roseAnimation">🌹</div>
+        </div>
+
         <div id="confirmation" class="confirmation">
           <div class="heart-container">
             <svg class="heart-svg" viewBox="0 0 32 29.6">
@@ -944,6 +1228,34 @@
             I'm really looking forward to our date on November 16th! I'll
             confirm all the details closer to the time.
           </p>
+
+          <!-- Countdown Timer moved inside confirmation -->
+          <div class="countdown-container" id="countdownContainer">
+            <h6>Counting Down to Our Special Evening</h3>
+            <div class="countdown">
+              <div class="countdown-item">
+                <span class="countdown-number" id="days">0</span>
+                <span class="countdown-label">Days</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number" id="hours">0</span>
+                <span class="countdown-label">Hours</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number" id="minutes">0</span>
+                <span class="countdown-label">Minutes</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number" id="seconds">0</span>
+                <span class="countdown-label">Seconds</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Name in Lights Animation moved to footer area -->
+        <div class="name-lights" id="nameLights">
+          <h2 class="glowing-name">Namadzavho</h2>
         </div>
 
         <div class="footer">
@@ -964,13 +1276,42 @@
         const confirmation = document.getElementById("confirmation");
         const floatingHearts = document.getElementById("floatingHearts");
 
+        // New elements
+        const surpriseButton = document.getElementById("surpriseButton");
+        const surpriseMessage = document.getElementById("surpriseMessage");
+        const closeSurprise = document.getElementById("closeSurprise");
+        const nameLights = document.getElementById("nameLights");
+        const roseContainer = document.getElementById("roseContainer");
+        const roseAnimation = document.getElementById("roseAnimation");
+        const countdownContainer =
+          document.getElementById("countdownContainer");
+        const romanticMusic = document.getElementById("romanticMusic");
+
         let envelopeOpened = false;
 
-        // Initialize particles
+        // Initialize all features
         initParticles();
-
-        // Initialize love animation
         initLoveAnimation();
+        initCountdown();
+        setupMusic();
+        setupSurpriseMessage();
+        setupRoseAnimation();
+
+        // Auto-play music when page loads
+        function setupMusic() {
+          // Note: You'll need to add your own music file
+          // romanticMusic.src = "romantic-music.mp3";
+
+          // Try to play music automatically (might require user interaction on some browsers)
+          setTimeout(() => {
+            romanticMusic.play().catch((error) => {
+              console.log(
+                "Auto-play failed, will play after user interaction:",
+                error
+              );
+            });
+          }, 1000);
+        }
 
         // Function to create floating hearts
         function createFloatingHearts() {
@@ -1029,7 +1370,12 @@
             setTimeout(() => {
               invitationCard.style.display = "block";
               buttonsContainer.style.display = "flex";
+              nameLights.style.display = "block";
+              roseContainer.style.display = "block";
               envelopeContainer.style.display = "none";
+
+              // Start rose petals animation when envelope opens
+              createRosePetals();
 
               // Initialize button positions
               moveDeclineButton();
@@ -1049,9 +1395,12 @@
           // Hide invitation content
           invitationCard.style.display = "none";
           buttonsContainer.style.display = "none";
+          nameLights.style.display = "none";
+          roseContainer.style.display = "none";
 
           // Show confirmation message with animation
           confirmation.style.display = "block";
+          countdownContainer.style.display = "block";
 
           // Create celebration hearts
           createCelebrationHearts();
@@ -1062,6 +1411,92 @@
           // Send notification
           sendAcceptanceNotification();
         });
+
+        // Setup surprise message
+        function setupSurpriseMessage() {
+          surpriseButton.addEventListener("click", function () {
+            surpriseMessage.classList.add("active");
+          });
+
+          closeSurprise.addEventListener("click", function () {
+            surpriseMessage.classList.remove("active");
+          });
+
+          // Close surprise message when clicking outside
+          surpriseMessage.addEventListener("click", function (e) {
+            if (e.target === surpriseMessage) {
+              surpriseMessage.classList.remove("active");
+            }
+          });
+        }
+
+        // Setup rose animation (no button, just automatic)
+        function setupRoseAnimation() {
+          // Rose animation will start automatically when envelope opens
+        }
+
+        // Create rose petals animation
+        function createRosePetals() {
+          for (let i = 0; i < 20; i++) {
+            setTimeout(() => {
+              const petal = document.createElement("div");
+              petal.innerHTML = "🌸";
+              petal.style.position = "fixed";
+              petal.style.fontSize = Math.random() * 20 + 15 + "px";
+              petal.style.left = Math.random() * 100 + "vw";
+              petal.style.top = "-50px";
+              petal.style.zIndex = "1000";
+              petal.style.pointerEvents = "none";
+              document.body.appendChild(petal);
+
+              // Animate petal
+              gsap.to(petal, {
+                y: window.innerHeight + 100,
+                x: Math.random() * 200 - 100,
+                rotation: Math.random() * 360,
+                duration: Math.random() * 5 + 5,
+                ease: "power1.in",
+                onComplete: () => {
+                  document.body.removeChild(petal);
+                },
+              });
+            }, i * 200);
+          }
+        }
+
+        // Initialize countdown timer
+        function initCountdown() {
+          function updateCountdown() {
+            const targetDate = new Date("November 16, 2025 18:30:00").getTime();
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(
+              (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+            );
+            const minutes = Math.floor(
+              (timeLeft % (1000 * 60 * 60)) / (1000 * 60)
+            );
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days
+              .toString()
+              .padStart(2, "0");
+            document.getElementById("hours").textContent = hours
+              .toString()
+              .padStart(2, "0");
+            document.getElementById("minutes").textContent = minutes
+              .toString()
+              .padStart(2, "0");
+            document.getElementById("seconds").textContent = seconds
+              .toString()
+              .padStart(2, "0");
+          }
+
+          setInterval(updateCountdown, 1000);
+          updateCountdown();
+        }
 
         // Create celebration hearts when invitation is accepted
         function createCelebrationHearts() {
@@ -1182,8 +1617,8 @@
             notification.style.animation = "slideOutRight 0.5s ease-in";
             setTimeout(() => {
               document.body.removeChild(notification);
-            }, 0.01);
-          }, 0.01);
+            }, 500);
+          }, 5000);
 
           // Add the slide animations to the style
           const style = document.createElement("style");
